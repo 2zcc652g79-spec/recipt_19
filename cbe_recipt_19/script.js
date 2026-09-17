@@ -5,7 +5,7 @@
 
 // ============================================================================
 // OFFICIAL CBE MOBILE RECEIPT LOADER LOGIC
-// Exactly 1.8 seconds (1,800,000 microseconds / 1,800ms) animation stay duration
+// Exactly 2.0 seconds (2,000,000 microseconds / 2,000ms) animation stay duration
 // ============================================================================
 (function initCBELoader() {
   // Clean URL if old test parameters (like ?delay_us=5000000) are lingering in browser
@@ -14,8 +14,8 @@
     window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
   }
 
-  // Exact target stay duration: 1.8 seconds (1,800 ms / 1,800,000 µs)
-  const EXACT_DURATION_MS = 1800;
+  // Exact target stay duration: 2.0 seconds (2,000 ms / 2,000,000 µs)
+  const EXACT_DURATION_MS = 2000;
 
   function dismissLoader() {
     const loader = document.getElementById('cbeLoader');
@@ -33,11 +33,11 @@
   const elapsed = performance.now() - pageStartTime;
   const remainingDelay = Math.max(0, EXACT_DURATION_MS - elapsed);
 
-  // Trigger dismissal at exactly 1.8s from page start
+  // Trigger dismissal at exactly 2.0s from page start
   setTimeout(dismissLoader, remainingDelay);
 
-  // Re-trigger loading screen anytime (default: 1.8s)
-  // window.simulateCBELoader() or window.simulateCBELoader(1800)
+  // Re-trigger loading screen anytime (default: 2.0s)
+  // window.simulateCBELoader() or window.simulateCBELoader(2000)
   window.simulateCBELoader = function (customDelay, isMicroseconds = false) {
     const loader = document.getElementById('cbeLoader');
     if (!loader) return;
